@@ -1,15 +1,15 @@
-coredev-Vagrant
+coredev.vagrant
 ================
 
-coredev-Vagrant is a kit for setting up a Plone coredev environment in a virtual box.
+coredev.vagrant is a kit for setting up a Plone coredev developmentenvironment in a virtual box.
 
 The kit uses the VirtualBox for the virtual machine and the Vagrant box setup system.
 It should run on any host machine for which Vagrant is available; that includes Windows Vista+, OS X and Linux.
 Both VirtualBox and Vagrant are open-source.
 
-The coredev-Vagrant kit is meant to get you to your first commit quickly.
+The coredev.vagrant kit is meant to get you to your first commit quickly.
 Key development files are set up to be accessible and editable with host-based editors.
-Host commands are provided to run Plone and buildout.
+A host command script is provided to run buildout and anything else in the buildout's bin.
 So little or no knowledge of the VirtualBox guest environment (which happens to be Ubuntu Linux) should be required.
 
 Installation
@@ -21,13 +21,13 @@ Installation
 
 3. If you are using Windows, install the Putty ssh kit: http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html. Install all the binaries, or at least putty.exe and plink.exe.
 
-4. Download and unpack coredev-Vagrant ...
+4. Download and unpack coredev.vagrant from https://github.com/smcmahon/coredev.vagrant/archive/master.zip.
 
-5. Open a command prompt; change directory into the coredev_vagrant-master directory (twice; it's two folders deep) and issue the command "vagrant up".
+5. Open a command prompt; change directory into the coredev.vagrant-master directory and issue the command "vagrant up".
 
 6. Go for lunch or a long coffee break. "vagrant up" is going to download a virtual box kit (unless you already happen to have a match installed), clone buildout.coredev and set up some convenience scripts. On Windows, it will also generate an ssh key pair that's usable with Putty.
 
-7. Look to see if the install ran well. The last thing you should see in the command window is a success message from the Plone Unified Installer. The virtual machine will be running at this point.
+7. Look to see if the install ran well. The virtual machine will be running at this point.
 
 While running "vagrant up", feel free to ignore messages like "stdin: is not a tty" and "warning: Could not retrieve fact fqdn". They have no significance in this context.
 
@@ -50,10 +50,12 @@ Finally, you may remove the VirtualBox (deleting its image) with the command::
 
     c:\...> vagrant destroy
 
+Note that port 8080 on the host system will be in use whenever the guest system is up. Halt it to clear the port.
+
 Running Plone and buildout
 --------------------------
 
-The sample commands below are for Windows. Linux/BSD/OS X users will need to use commands like "./buildout.sh".
+The sample commands below are for Windows. Linux/BSD/OS X users will need to use commands like "./runbin.sh".
 
 To run buildout, just issue the command "runbin buildout" (./runbin.sh on a Unix-workalike host). This will run buildout; add command line arguments as desired::
 
@@ -84,28 +86,9 @@ To run a test suite, use a command like::
 Editing Plone configuration and source files
 --------------------------------------------
 
-After running "vagrant up", you should have a plone subdirectory. In it, you'll find your buildout configuration files and a "src" directory. These are the matching items from a normal Plone installation. You may add development packages to the src directory and edit all the files.
+After running "vagrant up", you should have a buildout.coredev subdirectory. In it, you'll find your buildout configuration files and a "src" directory. These are the matching items from a normal coredev installation. You may edit all the files.
 
-All of this is happening in a directory that is shared with the guest operating system, and the .cfg files and src directory are linked back to the working copy of Plone on the guest machine.
-
-Making commits
---------------
-
-To use git, you'll need to use vagrant ssh to get a command prompt on the guest OS.
-Typically, you'll change into the buildout.coredev directory and run commit or push commands::
-
-    c:\...> putty_ssh
-    cd buildout.coredev
-    git commit ...
-    git push
-
-Before committing for the first time, run:
-
-    git config --global user.email "you@example.com"
-    git config --global user.name "Your Name"
-
-buildout.coredev is checked out with an https URL. So, you'll need to supply a username
-and password each time you push. If you don't like that, learn how to use ssh keys and do a new buildout.coredev checkout via ssh.
+All of this is happening in a directory that is shared with the guest operating system, and the .cfg files and src directory are linked back to the working copy of coredev on the guest machine. All the rest of the install is on the guest system only.
 
 Using the VirtualBox directly
 -----------------------------
@@ -130,12 +113,31 @@ Or, the guest to the host::
 
 The "vagrant@localhost:" specifies the vagrant user on the guest machine.
 
+Making commits
+--------------
+
+To use git, you'll need to use vagrant ssh to get a command prompt on the guest OS.
+Typically, you'll change into the buildout.coredev directory and run commit or push commands::
+
+    c:\...> putty_ssh  # on Unix-workalikes, "vagrant ssh"
+    cd buildout.coredev
+    git commit ...
+    git push
+
+Before committing for the first time, run:
+
+    git config --global user.email "you@example.com"
+    git config --global user.name "Your Name"
+
+buildout.coredev is checked out with an https URL. So, you'll need to supply a username
+and password each time you push. If you don't like that, learn how to use ssh keys change the buildout.coredev clone to use and ssh remote.
+
 What doesn't work
 -----------------
 
 Using "runbin instance debug" from the host side isn't going to work. However, you may use your ssh command to get a guest OS prompt and run it there. You'll just need to know a little about how to operate at a Linux "bash" command prompt.
 
-The same is true for running ZopeSkel to generate a package skeleton, or doing anything else that requires command-line interaction.
+The same is true for anything else that requires command-line interaction.
 
 What's under the hood
 ---------------------
@@ -144,12 +146,12 @@ VirtualBox provides the virtual machine facilities. Vagrant makes setting it up,
 
 The guest operating system is the most recent Ubuntu LTS (12.0.4, Precise Pangolin), 32-bit (so that it will run on a 32- or 64-bit host).
 
-After setting up the operating system, Vagrant's provisioning system is used to load the required system packages, download the Plone Unified Installer, run the install, and set up the convenience scripts and share directory.
+After setting up the operating system, Vagrant's provisioning system is used to load the required system packages, clone buildout.coredeve, and set up the convenience scripts and share directory.
 
 Problems or suggestions?
 ------------------------
 
-File a ticket at https://github.com/smcmahon/plonedev_vagrant/issues. If this kit becomes mainstream, the tracker may move to http://dev.plone.org.
+File a ticket at https://github.com/smcmahon/coredev.vagrant/issues. If this kit becomes mainstream, the tracker will move to http://dev.plone.org.
 
 Steve McMahon, steve@dcn.org
 

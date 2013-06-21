@@ -1,3 +1,9 @@
+1.0 (2013-06-21)
+----------------
+
+- Create a coredev branch and repo based on plonedev_vagrant,
+
+
 4.3.1 (2013-06-19)
 ------------------
 
