@@ -85,3 +85,8 @@ for script in ${SHARED_DIR}/manifests/guest_scripts/*; do
         chmod 755 *.sh
     fi
 done
+
+echo
+echo "DONE!"
+echo "Shared files are in buildout.coredev."
+echo "You may now run buildout to produce a Plone instance."
