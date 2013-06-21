@@ -23,11 +23,13 @@ Installation
 
 4. Download and unpack coredev.vagrant from https://github.com/smcmahon/coredev.vagrant/archive/master.zip.
 
-5. Open a command prompt; change directory into the coredev.vagrant-master directory and issue the command "vagrant up".
+5. If you're running on Windows, look inside the unpack directory. Look for the innermost coredev.vagrant_master directory and move it to somewhere where it will have a much shorter pathname. We're going to create some directories that are shared between host and guest systems, and Windows path-length limitations are going to bite you if your full pathnames are long.
 
-6. Go for lunch or a long coffee break. "vagrant up" is going to download a virtual box kit (unless you already happen to have a match installed), clone buildout.coredev and set up some convenience scripts. On Windows, it will also generate an ssh key pair that's usable with Putty.
+6. Open a command prompt; change directory into the coredev.vagrant-master directory and issue the command "vagrant up".
 
-7. Look to see if the install ran well. The virtual machine will be running at this point.
+7. Go for lunch or a long coffee break. "vagrant up" is going to download a virtual box kit (unless you already happen to have a match installed), clone buildout.coredev and set up some convenience scripts. On Windows, it will also generate an ssh key pair that's usable with Putty.
+
+8. Look to see if the install ran well. The virtual machine will be running at this point.
 
 While running "vagrant up", feel free to ignore messages like "stdin: is not a tty" and "warning: Could not retrieve fact fqdn". They have no significance in this context.
 
