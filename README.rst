@@ -21,7 +21,7 @@ Installation
 
 3. If you are using Windows, install the Putty ssh kit: http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html. Install all the binaries, or at least putty.exe and plink.exe.
 
-4. Download and unpack coredev.vagrant from https://github.com/smcmahon/coredev.vagrant/archive/master.zip.
+4. Download and unpack coredev.vagrant from https://github.com/plone/coredev.vagrant/archive/master.zip.
 
 5. If you're running on Windows, look inside the unpack directory. Look for the innermost coredev.vagrant_master directory and move it to somewhere where it will have a much shorter pathname. We're going to create some directories that are shared between host and guest systems, and Windows path-length limitations are going to bite you if your full pathnames are long.
 
